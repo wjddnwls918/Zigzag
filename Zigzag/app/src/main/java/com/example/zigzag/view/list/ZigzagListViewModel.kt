@@ -4,40 +4,136 @@ import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.example.zigzag.common.BaseInfo
 import com.example.zigzag.model.list.Shop
 import com.example.zigzag.model.list.ShopInfo
 import com.example.zigzag.model.list.ShopRepository
 
 class ZigzagListViewModel(application: Application) : AndroidViewModel(application) {
 
-    val repository:ShopRepository
+    val repository: ShopRepository
     var shopInfo: ObservableField<ShopInfo> = ObservableField()
 
     lateinit var navigator: ZigzagListNavigator
+
+    var ageFilter = 0
+    var styleFilter = 0
+
+    var observeAgeFilter = MutableLiveData(0)
+    var observeStyleFilter = MutableLiveData(0)
+
+    var filterViewText = ObservableField<String>()
 
     init {
         repository = ShopRepository.getInstance(application)
     }
 
-    fun getShopListFromJson() :MutableList<Shop> {
+    fun getShopListFromJson(): MutableList<Shop> {
 
         val result: ShopInfo = repository.getShopInfoFromJson()
         shopInfo.set(result)
 
-        result.list.sortWith(compareByDescending ({it.`0`}))
-
-        Log.d("datacheck", result.week)
-        Log.d("datacheck", result.list.get(0).`0`.toString())
-        Log.d("datacheck", result.list.get(1).`0`.toString())
-        Log.d("datacheck", result.list.get(2).`0`.toString())
-        Log.d("datacheck", result.list.get(3).`0`.toString())
-
+        result.list.sortWith(compareByDescending({ it.`0` }))
 
         return result.list
     }
 
     fun onFilterClick() {
         navigator.onFilterClick()
+    }
+
+    fun getListByAgeAndStyle(): MutableList<Shop> {
+        val tempList = ArrayList<Shop>()
+
+        for (shop in shopInfo.get()?.list ?: ArrayList()) {
+
+
+            var isOk = checkAge(shop.A)
+            if (!isOk) {
+                continue
+            }
+
+            isOk = checkStyle(shop.S)
+
+            if (!isOk)
+                continue
+            else {
+                tempList.add(shop)
+            }
+        }
+
+        sortList(tempList)
+
+        return tempList
+    }
+
+    fun getListByAgeFilter(): MutableList<Shop> {
+        val tempList = ArrayList<Shop>()
+
+        for (shop in shopInfo.get()?.list ?: ArrayList()) {
+
+            var isOk = checkAge(shop.A)
+
+            if (!isOk) {
+                continue
+            } else {
+                tempList.add(shop)
+            }
+        }
+        return tempList
+    }
+
+    fun getListByStyleFilter(): MutableList<Shop> {
+        val tempList = ArrayList<Shop>()
+
+        for (shop in shopInfo.get()?.list ?: ArrayList()) {
+
+            val isOk = checkStyle(shop.S)
+
+            if (!isOk)
+                continue
+            else {
+                tempList.add(shop)
+            }
+        }
+
+        sortList(tempList)
+
+        return tempList
+    }
+
+    fun checkAge(tempAge: Array<Int>): Boolean {
+        var isOk = false
+        //연령대 체크
+        for ((index, value) in tempAge.withIndex()) {
+            if (value == 1 && ((ageFilter and (1 shl index)) == 1 shl index)) {
+                isOk = true
+                break
+            }
+        }
+        return isOk
+    }
+
+    fun checkStyle(tempStyle: String): Boolean {
+        //스타일 체크
+        var isOk = false
+        val transStyle = tempStyle.split(",")
+        for (style in transStyle) {
+            val tempPosition = BaseInfo.styleTypeStringToNum[style] ?: -1
+            if (tempPosition != -1 && ((styleFilter and (1 shl tempPosition)) == 1 shl tempPosition)) {
+                isOk = true
+                break
+            }
+        }
+
+        return isOk
+    }
+
+    fun sortList(list: MutableList<Shop>) {
+        list.sortedWith(compareByDescending<Shop> {
+            it.S.split(",").size
+        }.thenByDescending { it.`0` })
     }
 
 }
