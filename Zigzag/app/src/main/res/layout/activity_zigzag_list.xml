@@ -78,6 +78,19 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/tv_filter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/zigzag_list_small_margin"
+            android:drawableStart="@drawable/ic_filter_list_green_24dp"
+            android:gravity="center_vertical"
+            android:text="@{viewmodel.filterViewText}"
+            android:textColor="@color/zigzag_filter_green"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_filter_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_zigzag_list"
@@ -87,10 +100,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gl_end_of_toolbar" />
+            app:layout_constraintTop_toTopOf="@+id/gl_end_of_filter_text" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_end_of_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_filter_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
