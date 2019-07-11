@@ -1,19 +1,16 @@
 package com.example.zigzag.view.filter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.zigzag.R
 import com.example.zigzag.databinding.ActivityFilterBinding
-import com.google.android.material.button.MaterialButtonToggleGroup
 
-class FilterActivity : AppCompatActivity(), View.OnClickListener {
+class FilterActivity : AppCompatActivity(), FilterNavigator {
 
     lateinit var binding: ActivityFilterBinding
     lateinit var viewModel: FilterViewModel
@@ -24,6 +21,8 @@ class FilterActivity : AppCompatActivity(), View.OnClickListener {
         viewModel = ViewModelProviders.of(this).get(FilterViewModel::class.java)
 
         binding.viewmodel = viewModel
+
+        viewModel.navigator = this
 
         initToolbar()
 
@@ -56,12 +55,14 @@ class FilterActivity : AppCompatActivity(), View.OnClickListener {
         return false
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.tob_ten_age -> Log.d("datacheck", "hi")
-            R.id.tob_thirty_early_age -> Log.d("datacheck", "hi")
-        }
+
+    override fun onFilterFinishClick() {
+
+        var intent = Intent()
+        intent.putExtra("ageFilter",viewModel.ageFilter.toString())
+        intent.putExtra("styleFilter",viewModel.styleFilter.toString())
+        setResult(101,intent)
+
+        finish();
     }
-
-
 }
