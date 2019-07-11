@@ -9,6 +9,8 @@ import com.example.zigzag.common.BaseInfo
 import com.example.zigzag.model.list.Shop
 import com.example.zigzag.model.list.ShopInfo
 import com.example.zigzag.model.list.ShopRepository
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ZigzagListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -131,9 +133,23 @@ class ZigzagListViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun sortList(list: MutableList<Shop>) {
-        list.sortedWith(compareByDescending<Shop> {
-            it.S.split(",").size
+
+        list.sortedWith(compareByDescending <Shop> {
+            styleFitlerBitCount(it.S)
         }.thenByDescending { it.`0` })
+
     }
 
+    fun styleFitlerBitCount(S: String): Int {
+        val styleSplit = S.split(",")
+        var count = 0
+
+        for (item in styleSplit) {
+            val position = BaseInfo.styleTypeStringToNum[item] ?: -1
+            if (styleFilter and (1 shl position) == 1 shl position)
+                count += 1
+        }
+
+        return count
+    }
 }
