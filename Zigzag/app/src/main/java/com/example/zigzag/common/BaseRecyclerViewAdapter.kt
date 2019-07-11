@@ -9,7 +9,7 @@ abstract class BaseRecyclerVIewAdapter<T, VH : RecyclerView.ViewHolder?>(open va
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        onBindView(holder as VH, position)
+        onBindView(holder, position)
     }
 
     abstract fun onBindView(holder: VH, position: Int)
