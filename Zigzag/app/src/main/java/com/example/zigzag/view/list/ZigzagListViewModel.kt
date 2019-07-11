@@ -10,6 +10,7 @@ import com.example.zigzag.model.list.Shop
 import com.example.zigzag.model.list.ShopInfo
 import com.example.zigzag.model.list.ShopRepository
 import java.util.*
+import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 class ZigzagListViewModel(application: Application) : AndroidViewModel(application) {
@@ -134,10 +135,23 @@ class ZigzagListViewModel(application: Application) : AndroidViewModel(applicati
 
     fun sortList(list: MutableList<Shop>) {
 
-        list.sortedWith(compareByDescending <Shop> {
-            styleFitlerBitCount(it.S)
-        }.thenByDescending { it.`0` })
+        Collections.sort(list, object : Comparator<Shop> {
+            override fun compare(o1: Shop, o2: Shop): Int = when {
+                styleFitlerBitCount(o1.S) < styleFitlerBitCount(o2.S) -> 1
 
+                styleFitlerBitCount(o1.S) == styleFitlerBitCount(o2.S) -> {
+
+                    if (o1.`0` < o2.`0`) {
+                        1
+                    } else if (o1.`0` > o2.`0`) {
+                        -1
+                    } else
+                        0
+
+                }
+                else -> -1
+            }
+        })
     }
 
     fun styleFitlerBitCount(S: String): Int {
@@ -146,10 +160,9 @@ class ZigzagListViewModel(application: Application) : AndroidViewModel(applicati
 
         for (item in styleSplit) {
             val position = BaseInfo.styleTypeStringToNum[item] ?: -1
-            if (styleFilter and (1 shl position) == 1 shl position)
+            if ((styleFilter and (1 shl position)) == 1 shl position)
                 count += 1
         }
-
         return count
     }
 }
