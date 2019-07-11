@@ -1,7 +1,5 @@
 package com.example.zigzag.model.list
 
-import com.google.gson.annotations.SerializedName
-
 data class Shop(
     val n: String,
     val u: String,
