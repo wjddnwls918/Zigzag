@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.filter.FilterActivity">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.zigzag.view.filter.FilterViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_zigzag_filter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/zigzag_filter_title"
+                android:textSize="@dimen/zigzag_list_text_medium_size_sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/tv_age_filter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/zigzag_filter_gray"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/zigzag_list_medium_margin"
+            android:text="@string/zigzag_filter_age_title"
+            android:textSize="@dimen/zigzag_list_text_size_sp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_tv_age"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_toolbar" />
+
+
+        <ToggleButton
+            android:id="@+id/tob_ten_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_ten"
+            android:textOn="@string/zigzag_filter_age_ten"
+            app:layout_constraintBottom_toBottomOf="@id/gl_center_of_age"
+            app:layout_constraintEnd_toStartOf="@id/tob_twenty_early_age"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_twenty_early_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_twenty_early"
+            android:textOn="@string/zigzag_filter_age_twenty_early"
+            app:layout_constraintBottom_toBottomOf="@id/gl_center_of_age"
+            app:layout_constraintEnd_toStartOf="@id/tob_twenty_middle_age"
+            app:layout_constraintStart_toEndOf="@id/tob_ten_age"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_twenty_middle_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_twenty_middle"
+            android:textOn="@string/zigzag_filter_age_twenty_middle"
+            app:layout_constraintBottom_toBottomOf="@id/gl_center_of_age"
+            app:layout_constraintEnd_toStartOf="@id/tob_twenty_latter_age"
+            app:layout_constraintStart_toEndOf="@id/tob_twenty_early_age"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_twenty_latter_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_twenty_latter"
+            android:textOn="@string/zigzag_filter_age_twenty_latter"
+            app:layout_constraintBottom_toBottomOf="@id/gl_center_of_age"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_twenty_middle_age"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_thirty_early_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/age_button_margin"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_thirty_early"
+            android:textOn="@string/zigzag_filter_age_thirty_early"
+            app:layout_constraintBottom_toTopOf="@id/gl_end_of_age_filter"
+            app:layout_constraintEnd_toStartOf="@id/tob_thirty_middle_age"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_center_of_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_thirty_middle_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/age_button_margin"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_thirty_middle"
+            android:textOn="@string/zigzag_filter_age_thirty_middle"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_age_filter"
+            app:layout_constraintEnd_toStartOf="@id/tob_thirty_latter_age"
+            app:layout_constraintStart_toEndOf="@id/tob_thirty_early_age"
+            app:layout_constraintTop_toTopOf="@id/gl_center_of_age" />
+
+        <ToggleButton
+            android:id="@+id/tob_thirty_latter_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/age_toggle_background"
+            android:textColor="@color/age_toggle_text_color"
+            android:textOff="@string/zigzag_filter_age_thirty_latter"
+            android:textOn="@string/zigzag_filter_age_thirty_latter"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_age_filter"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_thirty_middle_age"
+            app:layout_constraintTop_toTopOf="@id/gl_center_of_age" />
+
+
+        <TextView
+            android:id="@+id/tv_style_filter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/zigzag_filter_gray"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/zigzag_list_medium_margin"
+            android:text="@string/zigzag_filter_style_title"
+            android:textSize="@dimen/zigzag_list_text_size_sp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_tv_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_age_filter" />
+
+
+        <ToggleButton
+            android:id="@+id/tob_style_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_second_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_6"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_first_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_second_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_7"
+            app:layout_constraintStart_toEndOf="@id/tob_style_5"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_first_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_second_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_8"
+            app:layout_constraintStart_toEndOf="@id/tob_style_6"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_first_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_second_style"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_style_7"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_first_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_third_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_10"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_second_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_third_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_11"
+            app:layout_constraintStart_toEndOf="@id/tob_style_9"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_second_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_third_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_12"
+            app:layout_constraintStart_toEndOf="@id/tob_style_10"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_second_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_third_style"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_style_11"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_second_style" />
+
+
+        <ToggleButton
+            android:id="@+id/tob_style_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_fifth_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_2"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_fourth_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_fifth_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_3"
+            app:layout_constraintStart_toEndOf="@id/tob_style_1"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_fourth_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_fifth_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_4"
+            app:layout_constraintStart_toEndOf="@id/tob_style_2"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_fourth_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_fifth_style"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_style_3"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_fourth_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_2"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_3"
+            app:layout_constraintStart_toEndOf="@id/tob_style_1"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_4"
+            app:layout_constraintStart_toEndOf="@id/tob_style_2"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_style_3"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_2"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_3"
+            app:layout_constraintStart_toEndOf="@id/tob_style_1"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toStartOf="@id/tob_style_4"
+            app:layout_constraintStart_toEndOf="@id/tob_style_2"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+        <ToggleButton
+            android:id="@+id/tob_style_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_toggle_background"
+            android:textColor="@color/style_toggle_text_color"
+            android:textOff="@string/zigzag_filter_style_1"
+            android:textOn="@string/zigzag_filter_style_1"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_first_style"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toEndOf="@id/tob_style_3"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_tv_style" />
+
+
+        <TextView
+            android:id="@+id/tv_choose_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/zigzag_filter_green"
+            android:gravity="center"
+            android:text="@string/zigzag_filter_choose"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/zigzag_list_text_medium_size_sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_start_of_chosen_btn" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_center_of_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_age_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.28" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_tv_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_first_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.43" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_second_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.53" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_third_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.63" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_fourth_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.63" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_fifth_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.73" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_sixth_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.83" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start_of_chosen_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.93" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

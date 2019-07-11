@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- custom -->
+    <color name="zigzag_list_toolbar_color">#F0EFEF</color>
+    <color name="zigzag_list_gray">#999999</color>
+
+    <color name="zigzag_filter_gray">#EEEEEE</color>
+    <color name="zigzag_filter_green">#52BEC3</color>
+    <color name="zigzag_filter_pink">#E32063</color>
+
+</resources>

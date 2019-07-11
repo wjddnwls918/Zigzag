@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.list.ZigzagListActivity">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.zigzag.view.list.ZigzagListViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_zigzag_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/zigzag_list_toolbar_color"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_zigzag_list_rank_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|start"
+                android:text="@{viewmodel.shopInfo.week}"
+                android:textSize="@dimen/zigzag_list_text_size_sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/zigzag_list_small_margin"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:backgroundTint="@android:color/white"
+                    android:gravity="start|center_vertical"
+                    android:layoutDirection="rtl"
+                    android:onClick="@{() -> viewmodel.onFilterClick() }"
+                    android:text="@string/zigzag_list_filter"
+                    android:textColor="@color/zigzag_list_gray"
+                    android:textSize="@dimen/zigzag_list_text_size_sp"
+                    app:icon="@drawable/ic_filter_list_black_24dp"
+                    app:iconTint="@color/zigzag_list_gray" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:backgroundTint="@android:color/white"
+                    android:gravity="start|center_vertical"
+                    android:layoutDirection="rtl"
+                    android:text="@string/zigzag_list_search"
+                    android:textColor="@color/zigzag_list_gray"
+                    android:textSize="@dimen/zigzag_list_text_size_sp"
+                    app:icon="@drawable/ic_search_black_24dp"
+                    app:iconTint="@color/zigzag_list_gray" />
+
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_zigzag_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_end_of_toolbar" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

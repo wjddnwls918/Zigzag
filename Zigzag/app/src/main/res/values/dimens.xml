@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zigzag_list_text_small_size_sp">12sp</dimen>
+    <dimen name="zigzag_list_text_size_sp">15sp</dimen>
+    <dimen name="zigzag_list_text_medium_size_sp">20sp</dimen>
+    <dimen name="zigzag_list_item_size">80dp</dimen>
+
+    <dimen name="zigzag_list_small_margin">8dp</dimen>
+    <dimen name="zigzag_list_medium_margin">16dp</dimen>
+
+    <dimen name="zigzag_list_small_padding">3dp</dimen>
+
+    <dimen name="zigzag_list_item_border_radius">5dp</dimen>
+
+    <dimen name="age_button_border">2dp</dimen>
+    <dimen name="age_button_margin">3dp</dimen>
+
+</resources>

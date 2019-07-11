@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Zigzag</string>
+
+    <!-- custom -->
+    <string name="zigzag_list_filter">필터</string>
+    <string name="zigzag_list_search">쇼핑몰 검색</string>
+
+    <string name="zigzag_filter_title">쇼핑몰 필터</string>
+    <string name="zigzag_filter_age_title">연령대</string>
+    <string name="zigzag_filter_style_title">스타일</string>
+    <string name="zigzag_filter_choose">선택 완료</string>
+
+    <string name="zigzag_filter_age_ten">10대</string>
+    <string name="zigzag_filter_age_twenty_early">20대 초반</string>
+    <string name="zigzag_filter_age_twenty_middle">20대 중반</string>
+    <string name="zigzag_filter_age_twenty_latter">20대 후반</string>
+    <string name="zigzag_filter_age_thirty_early">30대 초반</string>
+    <string name="zigzag_filter_age_thirty_middle">30대 중반</string>
+    <string name="zigzag_filter_age_thirty_latter">30대 후반</string>
+
+    <string name="zigzag_filter_style_1">페미닌</string>
+    <string name="zigzag_filter_style_2">모던시크</string>
+    <string name="zigzag_filter_style_3">심플베이직</string>
+    <string name="zigzag_filter_style_4">러블리</string>
+    <string name="zigzag_filter_style_5">유니크</string>
+    <string name="zigzag_filter_style_6">미시스타일</string>
+    <string name="zigzag_filter_style_7">캠퍼스룩</string>
+    <string name="zigzag_filter_style_8">빈티지</string>
+    <string name="zigzag_filter_style_9">섹시글램</string>
+    <string name="zigzag_filter_style_10">스쿨룩</string>
+    <string name="zigzag_filter_style_11">로맨틱</string>
+    <string name="zigzag_filter_style_12">오피스룩</string>
+    <string name="zigzag_filter_style_13">럭셔리</string>
+    <string name="zigzag_filter_style_14">헐리웃스타일</string>
+
+
+</resources>
