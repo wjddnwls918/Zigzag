@@ -25,25 +25,20 @@ class FilterActivity : AppCompatActivity(), FilterNavigator {
         viewModel.navigator = this
 
         initToolbar()
-
-        initListener()
     }
 
     fun initToolbar() {
         setSupportActionBar(binding.tbZigzagFilter)
-
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(
-            ContextCompat.getDrawable(
-                this,
-                R.drawable.ic_close_black_24dp
+        supportActionBar.run {
+            this?.setDisplayShowTitleEnabled(false)
+            this?.setDisplayHomeAsUpEnabled(true)
+            this?.setHomeAsUpIndicator(
+                ContextCompat.getDrawable(
+                    this@FilterActivity,
+                    R.drawable.ic_close_black_24dp
+                )
             )
-        )
-    }
-
-    fun initListener() {
-
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -58,10 +53,11 @@ class FilterActivity : AppCompatActivity(), FilterNavigator {
 
     override fun onFilterFinishClick() {
 
-        var intent = Intent()
-        intent.putExtra("ageFilter",viewModel.ageFilter.toString())
-        intent.putExtra("styleFilter",viewModel.styleFilter.toString())
-        setResult(101,intent)
+        var intent = Intent().apply {
+            putExtra("ageFilter", viewModel.ageFilter.toString())
+            putExtra("styleFilter", viewModel.styleFilter.toString())
+        }
+        setResult(101, intent)
 
         finish();
     }

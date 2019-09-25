@@ -125,18 +125,18 @@ class ZigzagListActivity : AppCompatActivity(), ZigzagListNavigator {
             viewModel.observeAgeFilter.value = viewModel.ageFilter
             viewModel.observeStyleFilter.value = viewModel.styleFilter
 
-            if (viewModel.ageFilter > 0 && viewModel.styleFilter > 0) {
-                //두 개 필터 모두 선택
-                adapter.setItem(viewModel.getListByAgeAndStyle())
-            } else if (viewModel.ageFilter > 0) {
-                adapter.setItem(viewModel.getListByAgeFilter())
-            } else if (viewModel.styleFilter > 0) {
-                adapter.setItem(viewModel.getListByStyleFilter())
-            } else {
-                //필터 없음
-                adapter.setItem(viewModel.shopInfo.get()?.list ?: ArrayList())
-            }
+            loadListByFilter()
+        }
+    }
 
+    fun loadListByFilter() {
+        when {
+            //두 개 필터 모두 선택
+            viewModel.ageFilter > 0 && viewModel.styleFilter > 0 -> adapter.setItem(viewModel.getListByAgeAndStyle())
+            viewModel.ageFilter > 0 -> adapter.setItem(viewModel.getListByAgeFilter())
+            viewModel.styleFilter > 0 -> adapter.setItem(viewModel.getListByStyleFilter())
+            //필터 없음
+            else ->   adapter.setItem(viewModel.shopInfo.get()?.list ?: ArrayList())
 
         }
     }
